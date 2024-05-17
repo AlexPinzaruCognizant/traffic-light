@@ -8,7 +8,6 @@ import com.example.trafficlight.secondScreen.data.repository.TrafficLightStateRe
 import com.example.trafficlight.secondScreen.domain.model.TrafficLightState
 import com.example.trafficlight.secondScreen.domain.repository.TrafficLightStateRepository
 import com.example.trafficlight.secondScreen.presentation.events.SecondScreenEvent
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
 
@@ -32,7 +31,6 @@ class SecondScreenViewModel(
 
     private fun turnOnTrafficLights() {
         repository.getCurrentTrafficLightState()
-            .observeOn(AndroidSchedulers.mainThread())
             .applySchedulers()
             .subscribe(
                 { onStateChanged(it) },
